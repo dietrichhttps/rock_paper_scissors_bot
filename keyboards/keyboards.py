@@ -22,7 +22,7 @@ yes_or_no_keyboard: ReplyKeyboardMarkup = yes_or_no_kb_builder.as_markup(
 )
 
 # Создал объект клавиатуры "Камень ножницы бумага"
-rock_paper_scissors_keyboard: ReplyKeyboardMarkup = rock_paper_scissors_kb_builder.as_markup(
-    resize_keyboard=True,
-    one_time_keyboard=True
+rock_paper_scissors_keyboard: ReplyKeyboardMarkup = (
+    rock_paper_scissors_kb_builder.
+    as_markup(resize_keyboard=True, one_time_keyboard=True)
 )
