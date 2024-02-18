@@ -12,6 +12,7 @@ from utils.utils import get_random_figure, get_game_result
 router = Router()
 
 
+# Этот хэндлер обрабатывает апдейты для команды "start"
 @router.message(Command(commands=['start', '/start@pepis_bepis_bot']))
 async def process_start_command(message: Message):
     await message.answer(
@@ -20,12 +21,14 @@ async def process_start_command(message: Message):
         )
 
 
+# Этот хэндлер обрабатывает кнопку "нет"
 @router.message(F.text == LEXICON_RU['button_texts']['start']['no'])
 async def process_no_answer(message: Message):
     await message.answer(
         text=LEXICON_RU['chat_texts']['start_answers']['if_no'])
 
 
+# Этот хэндлер обрабатывает кнопку "да"
 @router.message(F.text == LEXICON_RU['button_texts']['start']['yes'])
 async def process_yes_answer(message: Message):
     await message.answer(
@@ -34,24 +37,29 @@ async def process_yes_answer(message: Message):
     )
 
 
+# Этот хэндлер обрабатывает кнопку "Камень"
 @router.message(F.text == LEXICON_RU['button_texts']['figures']['rock'])
 async def process_rock_answer(message: Message):
     await process_game_answer(
         message, LEXICON_RU['button_texts']['figures']['rock'])
 
 
+# Этот хэндлер обрабатывает кнопку "Бумага"
 @router.message(F.text == LEXICON_RU['button_texts']['figures']['paper'])
 async def process_paper_answer(message: Message):
     await process_game_answer(
         message, LEXICON_RU['button_texts']['figures']['paper'])
 
 
+# Этот хэндлер обрабатывает кнопку "Ножницы"
 @router.message(F.text == LEXICON_RU['button_texts']['figures']['scissors'])
 async def process_scissors_answer(message: Message):
     await process_game_answer(
         message, LEXICON_RU['button_texts']['figures']['scissors'])
 
 
+# Этот хэндлер на основе фигуры пользователя определяет, кто победил
+# и отправляет в чат результаты игры
 async def process_game_answer(message: Message, figure: str):
     bot_figure = get_random_figure()
     game_result = get_game_result(figure, bot_figure)
